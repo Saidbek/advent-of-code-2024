@@ -30,7 +30,7 @@ def parse_report(input)
     .map {|arr| arr.map(&:to_i)}
 end
 
-input = File.read("./inputs/input02.txt")
+input = File.read("input.txt")
 
 # part 1
 p count_safes(input)

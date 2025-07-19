@@ -22,7 +22,7 @@ def parse(input)
     .map {|column| column.map(&:to_i)}
 end
 
-input = File.read("inputs/input01.txt")
+input = File.read("input.txt")
 
 # part 1
 puts total_distance(input)
