@@ -8,23 +8,18 @@ def part2(input)
   total = 0
   skip = false
 
-  instructions = input.scan(/(do\(\)|don't\(\)|mul\(\d+,\d+\))/).flatten
-
-  instructions.each do |instruction|
-    if instruction == "do()"
+  input.scan(/(do\(\)|don't\(\)|mul\((\d+),(\d+)\))/) do |match|
+    instruction, num1, num2 = match
+    
+    case instruction
+    when "do()"
       skip = false
-    elsif instruction == "don't()"
+    when "don't()"
       skip = true
-    elsif instruction.start_with?("mul") && !skip
-      sum = instruction
-        .scan(/mul\((\d+),(\d+)\)/)
-        .flatten
-        .map(&:to_i)
-        .reduce(:*)
-
-      total += sum
-    else
-
+    when "mul"
+      unless skip
+        total += num1.to_i * num2.to_i
+      end
     end
   end
 
